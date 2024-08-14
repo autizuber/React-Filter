@@ -1,52 +1,66 @@
 //index.js file 
-const droupDownData = [
-  {lable : "data of registation"},
-  {lable : "vander score"},
-  {lable : "Rating"},
-  {lable : "status"},
-  {lable : "type of business"},
-  {lable : "location"}
-]
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <CookiesProvider>
-      <FilterDemo droupDownData={droupDownData} btn="Filter" />
-    </CookiesProvider>
+const dropdownContent = [
+  { label: "Date of registration" },
+  { label: "Vendor Sorce" },
+  { label: "Rating" },
+  { label: "Status" },
+  { label: "Type of business" },
+  { label: "location" },
+];
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <StoreContextProvider>
+      <FilterCompo
+        filterBtn="Filter"
+        dropdownContent={dropdownContent}
+        droupDownTitle="Refine by"
+      />
+    </StoreContextProvider>
+  </BrowserRouter>
 );
 
 
 // FilterDemo.css
+import React, { useState } from "react";
+import "./Reactintern.css";
 
-import { useState } from "react";
-import "./FilterDemo.css";
+const Filter = ({ filterBtn, dropdownContent, droupDownTitle }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
 
-export function FilterDemo({ btn, droupDownData }) {
-  const [showDropdown, setShowDeopdown] = useState(false);
-  function toggleButton() {
-    setShowDeopdown(!showDropdown);
-  }
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleSelect = (item) => {
+    alert(`You Select: ${item.label}`);
+    setShowDropdown(false);
+  };
 
   return (
-    <div className="container main">
-      <button onClick={toggleButton} className="btn btn-primary">
-        <i className="bi bi-filter"></i>
-        {btn}
+    <div className="filter-container">
+      <button onClick={toggleDropdown} className="filter-button">
+        {filterBtn}
       </button>
       {showDropdown && (
-        <div className="dropdown">
-          <div className="d-flex justify-content-between align-items-center">
-            <p className="m-2">Refine by</p>
-            <button className="btn btn-link">close</button>
+        <div className="dropdown-menu">
+          <div className="droupdown-head">
+            <p>{droupDownTitle}</p>
+            <button>clear</button>
           </div>
-          <div className="dropdown-menu">
-            {droupDownData.map((item, index) => (
-              <div className="dropdoun-item" key={index}>
-                <label>{item.lable}</label>
-              </div>
-            ))}
-          </div>
+          {dropdownContent.map((item, index) => (
+            <div
+              key={index}
+              className="dropdown-item"
+              onClick={() => handleSelect(item)}
+            >
+              {item.label} <i class="bi bi-chevron-right"></i>
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
-}
+};
+
+export default Filter;
