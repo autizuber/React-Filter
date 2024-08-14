@@ -1,3 +1,22 @@
+//index.js file 
+const droupDownData = [
+  {lable : "data of registation"},
+  {lable : "vander score"},
+  {lable : "Rating"},
+  {lable : "status"},
+  {lable : "type of business"},
+  {lable : "location"}
+]
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <CookiesProvider>
+      <FilterDemo droupDownData={droupDownData} btn="Filter" />
+    </CookiesProvider>
+);
+
+
+// FilterDemo.css
+
 import { useState } from "react";
 import "./FilterDemo.css";
 
