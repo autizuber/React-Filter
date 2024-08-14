@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 
 
-// FilterDemo.css
+// FilterDemo.jsx
 import React, { useState } from "react";
 import "./Reactintern.css";
 
@@ -64,3 +64,70 @@ const Filter = ({ filterBtn, dropdownContent, droupDownTitle }) => {
 };
 
 export default Filter;
+
+
+// Filter.css
+
+.filter-container {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.filter-button {
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50%;
+  left: 57%;
+  background-color: white;
+  border: 1px solid #e7e7e7;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(21, 21, 21, 0.15);
+  z-index: 1000;
+  width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.dropdown-menu .droupdown-head{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.droupdown-head p{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.droupdown-head button{
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
